@@ -1,3 +1,3 @@
-# OnlineService Spring boot example
+# OnlineService Spring boot
 
 #implementing micro-services using spring boot
