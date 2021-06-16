@@ -4,7 +4,7 @@ pipeline{
 	
 	stages{
 	
-	    steage('Initializing'){
+	        steage('Initializing'){
 			 steps{
 				 echo '${PATH}'
 				 echo '${M2_HOME'}
@@ -35,7 +35,6 @@ pipeline{
 			
 		}
 		
+	    }
+	
 	}
-	
-	
-}
