@@ -7,28 +7,21 @@ pipeline{
 			steps{
 				echo 'Building'
 			}
-			
 		}
 		stage('test'){
 			steps{
 				echo 'testing'
 			}
-			
 		}
 		stage('publish'){
 			steps{
 				echo 'publishing'
 			}
-			
 		}
 		stage('deploy'){
 			steps{
 				echo 'deploy'
-			}
-			
-		}
-		
-	}
-	
-	
+			}	
+		}	
+	}	
 }
