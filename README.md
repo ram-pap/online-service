@@ -2,4 +2,3 @@
 
 #implementing micro-services using spring boot
 
-configured jenkins 
