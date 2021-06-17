@@ -3,8 +3,8 @@ pipeline {
     stages {
         stage('Initialize') { 
             steps {
-              echo "${PATH}"
-                echo "${M2_HOME}"
+              withMaven(maven : 'apache-maven-3.6.1') {
+              bat'mvn clean compile'
             }
         }
         stage('Build') { 
