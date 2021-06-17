@@ -1,11 +1,12 @@
 pipeline {
     agent any 
+    tools {
+        maven 'Maven_3.5.2' 
+    }
     stages {
         stage('Initialize') { 
             steps {
-              withMaven(maven : 'apache-maven-3.6.1') {
-              bat'mvn clean compile'
-              }
+               bat'mvn clean compile'
             }
         }
         stage('Build') { 
