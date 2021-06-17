@@ -9,7 +9,7 @@ import com.springboot.example.order.beans.Order;
 
 public interface OrderService {
 	
-	public Optional<Order> findOrderById(String orderId) throws OrderNotFoundException;
+	public Order findOrderById(String orderId) throws OrderNotFoundException;
 	public Order saveOrder(Order order);
 	public List<Order> saveOrder(List<Order> orders);
 
