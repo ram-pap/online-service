@@ -1,7 +1,7 @@
 pipeline{
    agent any
 	stages{
-	   steage('Initializing'){
+	   stage('Initializing'){
 		steps{
 		     echo '${PATH}'
 		     echo '${M2_HOME'}
