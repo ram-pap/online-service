@@ -11,17 +11,17 @@ pipeline {
         }
         stage('Build') { 
             steps {
-              echo 'Build'
+              bat 'mvn build'
             }
         }
         stage('Test') { 
             steps {
-                echo 'test'
+                bat 'mvn test'
             }
         }
         stage('Deploy') { 
             steps {
-               echo 'Deploy'
+               bat 'mvn package'
             }
         }
     }
