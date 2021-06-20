@@ -1,18 +1,17 @@
+
 pipeline{
 
 	agent any
 	
 	stages{
 	
-<<<<<<< Updated upstream
+
 	        steage('Initializing'){
 			 steps{
 				 echo '${PATH}'
 				 echo '${M2_HOME'}
 			 }
 		 }
-=======
->>>>>>> Stashed changes
 		stage('build'){
 			steps{
 				echo 'Building'
@@ -35,14 +34,41 @@ pipeline{
 			steps{
 				echo 'deploy'
 			}
-<<<<<<< Updated upstream
 			
 		}
 		
 	    }
 }
-=======
+
 		}	
 	}
 }
->>>>>>> Stashed changes
+pipeline {
+    agent any 
+    tools {
+        maven 'maven'
+    }
+    stages {
+        stage('Initialize') { 
+            steps {
+               bat'mvn clean compile'
+            }
+        }
+        stage('Build') { 
+            steps {
+              bat 'mvn install'
+            }
+        }
+        stage('Test') { 
+            steps {
+                bat 'mvn test'
+            }
+        }
+        stage('Deploy') { 
+            steps {
+               bat 'mvn deploy'
+            }
+        }
+    }
+}
+
