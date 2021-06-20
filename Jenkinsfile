@@ -4,12 +4,15 @@ pipeline{
 	
 	stages{
 	
+<<<<<<< Updated upstream
 	        steage('Initializing'){
 			 steps{
 				 echo '${PATH}'
 				 echo '${M2_HOME'}
 			 }
 		 }
+=======
+>>>>>>> Stashed changes
 		stage('build'){
 			steps{
 				echo 'Building'
@@ -32,8 +35,14 @@ pipeline{
 			steps{
 				echo 'deploy'
 			}
+<<<<<<< Updated upstream
 			
 		}
 		
 	    }
 }
+=======
+		}	
+	}
+}
+>>>>>>> Stashed changes

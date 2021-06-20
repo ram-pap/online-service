@@ -24,11 +24,11 @@ public class OrderServiceImpl implements OrderService {
 		this.orderDao = orderDao;
 	}
 
-	public Optional<Order> findOrderById(String orderId) throws OrderNotFoundException {
+	public Order findOrderById(String orderId) throws OrderNotFoundException {
 		Optional<Order> optOrder = this.orderDao.findById(orderId);
 		try {
 			if (optOrder.isPresent()) {
-				return optOrder;
+				return optOrder.get();
 			}else
 				throw new OrderNotFoundException("No Order was found with "+orderId);
 		} catch (OrderNotFoundException e) {

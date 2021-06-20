@@ -42,7 +42,7 @@ public class OrderController {
 
 	@GetMapping(value = "/find/{orderId}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public Order findOrderById(@PathVariable String orderId) throws Exception {
-		return  this.orderService.findOrderById(orderId).orElseThrow();
+		return  this.orderService.findOrderById(orderId);
 	}
 
 	@PostMapping(path = "/save")
