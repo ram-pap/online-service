@@ -1,37 +1,38 @@
 package com.springboot.example.customer.beans;
 
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.stereotype.Component;
 
 import com.springboot.example.order.beans.Address;
-import com.springboot.example.order.beans.Contact;
+
 @Document
-public class Customer {
+public class User {
 	
 	@Id
-	private String customerId;
-	private Address address;
+	private String userId;
+	
 	private String firstName;
 	private String lastName;
-	private Contact contact;
-	public Customer() {
+	private Address address;
+	private String mobileNo;
+	private String email;
+	public User() {
 	
 	}
-	public Customer(String customerId, Address address, String firstName, String lastName,
-			Contact contact) {
-		this.customerId = customerId;
+	public User(String userId, Address address, String firstName, String lastName,
+			String mobileNo,String email) {
+		this.userId = userId;
 		this.address = address;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.contact = contact;
+		this.mobileNo = mobileNo;
+		this.email = email;
 	}
 	public String getCustomerId() {
-		return customerId;
+		return userId;
 	}
-	public void setCustomerId(String customerId) {
-		this.customerId = customerId;
+	public void setCustomerId(String userId) {
+		this.userId = userId;
 	}
 	public Address getAddress() {
 		return address;
@@ -52,16 +53,11 @@ public class Customer {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public Contact getContact() {
-		return contact;
-	}
-	public void setContact(Contact contact) {
-		this.contact = contact;
-	}
+	
 	@Override
 	public String toString() {
-		return "Customer [customerId=" + customerId + ", address1=" + address + ", firstName=" + firstName + ", lastName=" + lastName + ", contact=" + contact + "]";
+		return "User [UserId=" + userId + ", address1=" + address + ", firstName=" + firstName + ", lastName=" + lastName + ", mobline No=" + mobileNo + ",  email"+email+"]";
 	}
 	
-	
+
 }

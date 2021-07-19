@@ -20,7 +20,7 @@ public class Vendor {
 	public Vendor() {
 		
 	}
-	public Vendor(String vendorId, String vendorName, Address address, Contact contact, Date registredDate,List<Product> products) {
+	public Vendor(String vendorId, String vendorName, Address address, Date registredDate,List<Product> products) {
 		this.vendorId = vendorId;
 		this.vendorName = vendorName;
 		this.address = address;

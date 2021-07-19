@@ -7,6 +7,7 @@ import javax.management.RuntimeErrorException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.springboot.example.exception.OrderNotFoundException;
@@ -37,9 +38,18 @@ public class OrderServiceImpl implements OrderService {
 			throw new RuntimeErrorException(null, e.getMessage());
 		}
 	}
-	public Order saveOrder(Order order) {
-
-		return this.orderDao.save(order);
+	public Order saveOrder(Order order) throws Throwable {
+		
+		Order savedOrder =  this.orderDao.save(order);
+		try {
+		if(savedOrder !=null)
+			return savedOrder;
+		else
+			throw new Exception("Unable save Order : "+order.toString()+" Due to : ");
+		}catch(Throwable t) {
+			throw new Throwable(t.getMessage()+t.getCause());
+		}
+		
 	}
 
 	public List<Order> saveOrder(List<Order> orders) {

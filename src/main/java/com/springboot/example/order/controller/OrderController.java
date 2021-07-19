@@ -1,5 +1,6 @@
 package com.springboot.example.order.controller;
 
+import java.util.Date;
 import java.util.Optional;
 
 import javax.management.RuntimeErrorException;
@@ -7,18 +8,17 @@ import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.springboot.example.exception.OrderNotFoundException;
+import com.springboot.example.exception.Error;
 import com.springboot.example.order.beans.Order;
 import com.springboot.example.order.service.OrderService;
 
@@ -41,25 +41,36 @@ public class OrderController {
 	}
 
 	@GetMapping(value = "/find/{orderId}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public Order findOrderById(@PathVariable String orderId) throws Exception {
+	public ResponseEntity findOrderById(@PathVariable String orderId) throws Exception {
 
-		Order order =  this.orderService.findOrderById(orderId);
-		
-		if(order != null)
-			return order;
-		else
-		       return order;
+		Order order = this.orderService.findOrderById(orderId);
+		try {
+			if (order != null)
+				return ResponseEntity.ok(order);
+			else
+				throw new Exception();
+		} catch (Throwable e) {
+			return ResponseEntity.ok(new Error().setTimeStamp(new Date()).setStatus(HttpStatus.CONFLICT)
+					.setMessage(e.getMessage()).setError(e.getCause()));
+		}
 
 	}
 
 	@PostMapping(path = "/save")
-	public Order saveOrder(@RequestBody Order order) {
+	public ResponseEntity saveOrder(@RequestBody Order order) {
 		System.out.println(order.toString());
-		Order optOrder = this.orderService.saveOrder(order);
-		if (optOrder != null)
-			return optOrder;
-		else
-			return null;
+		Order optOrder = null;
+		try {
+			optOrder = this.orderService.saveOrder(order);
+			if (optOrder != null)
+				return ResponseEntity.ok(optOrder);
+			else
+				throw new Exception();
+
+		} catch (Throwable e) {
+			return ResponseEntity.ok(new Error().setTimeStamp(new Date()).setStatus(HttpStatus.CONFLICT)
+					.setMessage(e.getMessage()).setError(e.getCause()));
+		}
 
 	}
 
