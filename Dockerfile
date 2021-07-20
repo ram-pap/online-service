@@ -11,7 +11,7 @@ COPY src .
 RUN ["mvn", "clean", "compile", "assembly:single"]
 RUN ["mvn", "package"]
 FROM openjdk:8-jdk-alpine
-ARG JAR_FILE=target/*.jar
+ARG JAR_FILE=*/*.jar
 ADD ${JAR_FILE} online-service.jar
 RUN bash -c 'touch /online-service.jar'
 ENTRYPOINT ["java","-jar","online-service.jar"]
