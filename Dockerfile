@@ -1,7 +1,7 @@
 #syntax = docker/dockerfile:1
 FROM maven:3.5.4-jdk-8-alpine as maven
 WORKDIR online-service
-PORT 8080
+ENV PORT 9090
 COPY pom.xml .
 COPY src .
 RUN mvn dependency:go-offline -B
