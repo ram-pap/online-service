@@ -7,6 +7,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,10 +30,16 @@ public class UserAuthController {
 	@Autowired
 	private JwtTokenUtil jwtTokenUtil;
 	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
+	
 	
 	@PostMapping("/login")
 	public ResponseEntity authenticate(@RequestBody JwtRequest request) throws Exception {
 		System.out.println("Authentication controller........");
+		String encodedPassword = passwordEncoder.encode(request.getPassword());
+		System.out.println(encodedPassword);
 		authenticate(request.getUserName(),request.getPassword());
         UserDetails userDetails =userAuthentication.loadUserByUsername(request.getUserName());
 		 String token  =jwtTokenUtil.generateToken(userDetails);
